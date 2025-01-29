@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import sklearn as sk
 import nltk
 import seaborn as sns
+import pickle
 from nltk.corpus import stopwords
 from textblob import TextBlob
 from textblob import Word
@@ -79,6 +80,9 @@ y_pred = classifier.predict(X_test)
 
 #Calculate the accuracy of the model using the test data.
 accuracy = accuracy_score(y_test, y_pred)*100
+
+#pickle the model for persistence, so that it can be used elsewhere
+pickle.dump(classifier, open('classifier.pkl', 'wb'))
 
 #Display the performance of the model on the test data as a confusion matrix.
 cm = confusion_matrix(y_test, y_pred)
